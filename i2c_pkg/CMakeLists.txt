@@ -26,14 +26,25 @@ add_executable(battery_node
     src/i2c.cpp
 )
 
+add_executable(battery_dummy_node
+    src/battery_dummy_node.cpp
+    src/i2c.cpp
+)
+
 target_include_directories(battery_node PRIVATE
     include
 )
 
+target_include_directories(battery_dummy_node PRIVATE
+    include
+)
+
 ament_target_dependencies(battery_node rclcpp deepracer_interfaces_pkg) 
+ament_target_dependencies(battery_dummy_node rclcpp deepracer_interfaces_pkg) 
 
 install(TARGETS
   battery_node
+  battery_dummy_node
   DESTINATION
   lib/${PROJECT_NAME}
 )
